@@ -3,8 +3,6 @@ import { MainWrapper } from './styles.module';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { WiHumidity } from 'react-icons/wi';
 import { SiWindicss } from 'react-icons/si';
-import { BsFillSunFill, BsCloudFog2Fill, BsCloudyFill, BsFillCloudRainFill } from 'react-icons/bs'; 
-import { TiWeatherPartlySunny } from 'react-icons/ti';
 import axios from 'axios';
 
 interface WeatherDataProps {
@@ -70,42 +68,15 @@ const DisplayWeather = () => {
 			throw error;
 		}
 	};
+	const iconChange = (iconCode: string) => {
+		const iconUrl = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+		
+		return (
+			<img src={iconUrl} alt="Weather Icon" className="icon" />
+		);
+	};
 
-  const iconChange = (weather: string) => {
-    let iconElement: React.ReactNode;
-    let iconColor: string;
-
-    switch (weather) {
-      case 'Rain':
-        iconElement = <BsFillCloudRainFill />;
-        iconColor = '#272829';
-        break;
-
-      case 'Clear':
-        iconElement = <BsFillSunFill />;
-        iconColor = '#FFC436';
-        break;
-
-      case 'Clouds':
-        iconElement = <BsCloudyFill />;
-        iconColor = '#102C57';
-        break;
-
-      case 'Mist':
-        iconElement = <BsCloudFog2Fill />;
-        iconColor = '#279EFF';
-        break;
-
-      default:
-        iconElement = <TiWeatherPartlySunny />;
-        iconColor = '#7B2869';
-    }
-    return (
-      <span className="icon" style={{ color: iconColor }}>
-        {iconElement}
-      </span>
-    );
-  };
+  
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(async (position) => {
@@ -146,22 +117,22 @@ const DisplayWeather = () => {
             <div className="weatherArea">
               <h1> {weatherData.name} </h1>
               <span> {weatherData.sys.country} </span>
-              <div className="icon ">{iconChange(weatherData.weather[0].main)}</div>
-              <h2>{weatherData.main.temp}</h2>
+              <div className="icon ">{iconChange(weatherData.weather[0].icon)}</div>
+              <h2>{Math.round(weatherData.main.temp)}°C</h2>
               <h2>{weatherData.weather[0].main}</h2>
             </div>
             <div className="bottomInfoArea">
               <div className="humidity">
                 <WiHumidity className="windIcon" />
                 <div className="humiInfo">
-                  <h2>{weatherData.main.humidity}</h2>
+                  <h2>{weatherData.main.humidity} %</h2>
                   <p>Humidity</p>
                 </div>
               </div>
               <div className="wind">
                 <SiWindicss className="windIcon" />
                 <div className="windInfo">
-                  <h2>{weatherData.wind.speed}</h2>
+                  <h2>{weatherData.wind.speed} km/h</h2>
                   <p>Wind speed</p>
                 </div>
               </div>
