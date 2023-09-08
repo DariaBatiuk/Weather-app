@@ -58,11 +58,15 @@ const DisplayWeather = () => {
 			const searchResults = await fetchWeatherData(searchCity);
 			if (searchResults && searchResults.currentSearchResults) {
 				setWeatherData(searchResults.currentSearchResults);
+				setSearchCity('');
 			} else {
 				setWeatherData(null); // if nothing found
+				alert('Failed search');
+				setSearchCity('');
 			}
 		} catch (error) {
 			console.log('City not found');
+			setSearchCity('');
 			throw error;
 		}
 	};
