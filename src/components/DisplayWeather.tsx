@@ -125,6 +125,11 @@ const DisplayWeather = () => {
             placeholder="enter a city"
             value={searchCity}
             onChange={(e) => setSearchCity(e.target.value)}
+						onKeyPress={(e) => {
+							if (e.key === 'Enter') {
+								handleSearch(); 
+							}
+						}}
           />
 
           <div className="searchCircle">
