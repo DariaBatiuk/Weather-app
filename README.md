@@ -1,3 +1,5 @@
+# Weather App 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -44,3 +46,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Image
+![image](https://github.com/DariaBatiuk/Weather-app/assets/83068010/35189e8b-03ce-4fe7-8e70-4bbf607a88b5)
+
